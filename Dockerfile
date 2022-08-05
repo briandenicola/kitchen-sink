@@ -93,5 +93,12 @@ RUN apt-get update \
 COPY ca-certificates.crt /etc/ssl/certs/
 COPY sleep.sh /bin/sleep.sh
 
+RUN rm -rf packages-microsoft-prod.deb
+RUN rm -rf kubelogin-linux-amd64.zip
+
+WORKDIR /code
+RUN git clone https://github.com/briandenicola/tooling
+RUN git clone https://github.com/briandenicola/psscripts
+
 RUN chmod a+x /bin/sleep.sh 
 ENTRYPOINT ["/bin/sleep.sh"]
