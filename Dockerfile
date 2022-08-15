@@ -32,7 +32,7 @@ RUN curl -sSL https://aka.ms/downloadazcopy-v10-linux -o /tmp/azcopy.tar.gz \
 RUN curl -sSL "https://github.com/fluxcd/flux2/releases/download/v${FLUX}/flux_${FLUX}_linux_amd64.tar.gz" -o /tmp/flux2.tar.gz \
     && tar -xf /tmp/flux2.tar.gz -C /tmp \
     && mv /tmp/flux /usr/local/bin \
-    && rm -f /tmp/flux.tar.gz 
+    && rm -f /tmp/flux2.tar.gz 
  
 RUN curl -sSL "https://github.com/briandenicola/directory-size/releases/download/${DS}/directorysize-linux-x64.tar.gz" -o /tmp/ds.tar.gz \
     && tar -xf /tmp/ds.tar.gz -C /tmp \
@@ -64,7 +64,7 @@ RUN curl -LO "https://github.com/Azure/kubelogin/releases/download/v${KUBELOGIN}
 RUN curl -sSL "https://github.com/istio/istio/releases/download/${ISTIO}/istio-${ISTIO}-linux-amd64.tar.gz" -o /tmp/istio.tar.gz \
     && tar -xf /tmp/istio.tar.gz -C /tmp \
     && mv /tmp/istio-${ISTIO}/bin/istioctl /usr/local/bin \ 
-    && rm -f /tmp/istio-${ISTIO}.tar.gz \
+    && rm -f /tmp/istio.tar.gz \
     && rm -rf tmp/istio-${ISTIO}
 
 RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
@@ -88,7 +88,8 @@ RUN apt-get update \
     ca-certificates  \
     nmon \  
     procmon \ 
-    slurm 
+    slurm \
+  && apt-get clean
 
 COPY ca-certificates.crt /etc/ssl/certs/
 COPY sleep.sh /bin/sleep.sh
