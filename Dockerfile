@@ -1,12 +1,12 @@
 FROM mcr.microsoft.com/azure-powershell:latest
 
-ARG HELM=3.8.0
-ARG FLUX=0.31.1
+ARG HELM=3.9.4
+ARG FLUX=0.34.0
 ARG DS=3.5.9
-ARG VAULT=1.10.3
-ARG TERRAFORM=1.2.2
+ARG VAULT=1.11.3
+ARG TERRAFORM=1.2.9
 ARG KUBELOGIN=0.0.13
-ARG ISTIO=1.14.1
+ARG ISTIO=1.14.4
 
 RUN apt-get update \
   && apt-get install --no-install-recommends --yes \
