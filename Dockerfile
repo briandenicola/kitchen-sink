@@ -26,6 +26,8 @@ RUN apt-get update \
     slurm \
   && apt-get clean
 
+RUN pip install yq
+
 RUN wget -q https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
 
@@ -51,6 +53,8 @@ RUN bash tooling/ngrok.sh
 RUN bash tooling/grpcurl.sh
 RUN bash tooling/kubelogin.sh
 RUN bash tooling/k9s.sh
+RUN bash tooling/azcopy.sh
+RUN bash tooling/azure-cli.sh
 #RUN bash tooling/sysinternals.sh
 
 RUN chmod a+x /bin/sleep.sh 
