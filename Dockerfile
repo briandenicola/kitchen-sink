@@ -42,7 +42,7 @@ ENV PATH="PATH=${PATH}:~/.local/bin"
 RUN echo "PATH=${PATH}:~/.local/bin" >> ~/.bashrc   
 
 RUN bash tooling/istio.sh
-RUN bash tooling/flux2.sh
+RUN bash tooling/flux2.sh 0.41.2 #4/21/23 - issues with flux2.0rc release
 RUN bash tooling/terraform.sh
 RUN bash tooling/vault.sh
 RUN bash tooling/hey.sh
