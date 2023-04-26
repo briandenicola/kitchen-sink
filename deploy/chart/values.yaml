@@ -1,0 +1,3 @@
+NAMESPACE: 'default'
+DOCKER_REPO: 'bjd145/utils'
+COMMIT_VERSION: '3.15'
