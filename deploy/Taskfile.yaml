@@ -15,7 +15,7 @@ tasks:
     cmds:
     - az aks get-credentials -g {{.RG}} -n {{.AKS}} --overwrite-existing
     - sed -i s/devicecode/azurecli/g ~/.kube/config
-    - helm upgrade -i workloadid --set APP_NAME={{.APP_NAME}} --set ARM_WORKLOAD_APP_ID={{.ARM_WORKLOAD_APP_ID}} --set ARM_TENANT_ID={{.ARM_TENANT_ID}} ./chart
+    - helm upgrade -i utils --set APP_NAME={{.APP_NAME}} --set ARM_WORKLOAD_APP_ID={{.ARM_WORKLOAD_APP_ID}} --set ARM_TENANT_ID={{.ARM_TENANT_ID}} ./chart
     vars:
       RG: 
         sh: terraform output -raw AKS_RESOURCE_GROUP
