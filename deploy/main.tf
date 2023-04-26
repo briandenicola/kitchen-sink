@@ -3,7 +3,7 @@ data "azurerm_client_config" "current" {}
 locals {
     resource_name               = var.application_name
     aks_name                    = "${local.resource_name}-aks"
-    workload-identity           = "${var.namespace}-utils-identity"
+    workload-identity           = "${local.resource_name}-${var.namespace}-utils-identity"
 }
 
 data "azurerm_resource_group" "this" {
