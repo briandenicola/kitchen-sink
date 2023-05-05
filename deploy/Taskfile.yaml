@@ -4,6 +4,8 @@ tasks:
   up:
     desc: Creates Azure infrastructure and deploys application code
     cmds:
+    - terraform workspace new {{.APP}} || true
+    - terraform workspace select {{.APP}}
     - terraform init
     - terraform apply -auto-approve -var "application_name={{.APP}}" -compact-warnings
     - task: deploy
