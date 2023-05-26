@@ -1,4 +1,5 @@
-NAMESPACE: 'default'
+NAMESPACE: 'utils'
 DOCKER_REPO: 'bjd145/utils'
-COMMIT_VERSION: '3.15'
+COMMIT_VERSION: '3.16'
 APP_NAME: ''
+ISTIO_INJECTED: 'disabled'
