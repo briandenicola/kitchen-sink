@@ -51,7 +51,7 @@ spec:
           requests:
             memory: "128Mi"
             cpu: "0.5"
-        securityContext:
-          allowPrivilegeEscalation: false  
-          runAsUser: 1000       
-          runAsNonRoot: true
+            #        securityContext:
+            #allowPrivilegeEscalation: false  
+            #runAsUser: 1000       
+            #runAsNonRoot: true
