@@ -1,7 +1,7 @@
 variable "namespace" {
   description   = "The namespace for the workload identity"
   type          = string
-  default       = "default"
+  default       = "utils"
 }
 
 variable "application_name" {
