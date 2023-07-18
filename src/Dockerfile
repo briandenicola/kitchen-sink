@@ -55,6 +55,7 @@ RUN bash tooling/kubelogin.sh
 RUN bash tooling/k9s.sh
 RUN bash tooling/azcopy.sh
 RUN bash tooling/azure-cli.sh
+RUN bash tooling/task.sh
 #RUN bash tooling/sysinternals.sh
 
 RUN chmod a+x /bin/sleep.sh 
