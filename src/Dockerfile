@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/azure-powershell:9.6.0-ubuntu-22.04
+#Version 3.16
+FROM mcr.microsoft.com/azure-powershell:11.3.0-ubuntu-22.04
 
 RUN apt-get update \
   && apt-get install --no-install-recommends --yes \
