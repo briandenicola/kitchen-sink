@@ -1,4 +1,4 @@
-#Version 3.16
+#Version 3.17
 FROM mcr.microsoft.com/azure-powershell:11.3.0-ubuntu-22.04
 
 RUN apt-get update \
@@ -6,6 +6,7 @@ RUN apt-get update \
     lsb-release \
     wget \
     unzip \ 
+    bzip2 \
     git \
     curl \
     sudo \
@@ -14,6 +15,7 @@ RUN apt-get update \
     dnsutils \
     jq \
     net-tools \
+    iputils-ping \
     redis-tools \
     vim \
     iproute2 \
@@ -57,6 +59,7 @@ RUN bash tooling/k9s.sh
 RUN bash tooling/azcopy.sh
 RUN bash tooling/azure-cli.sh
 RUN bash tooling/task.sh
+RUN bash tooling/sqlcmd.sh
 #RUN bash tooling/sysinternals.sh
 
 RUN chmod a+x /bin/sleep.sh 
