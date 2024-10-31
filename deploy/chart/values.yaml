@@ -1,5 +1,6 @@
-NAMESPACE: 'utils'
-DOCKER_REPO: 'bjd145/utils'
-COMMIT_VERSION: '3.16'
-APP_NAME: ''
-ISTIO_INJECTED: 'disabled'
+NAMESPACE             : 'utils'
+DOCKER_REPO           : 'bjd145/utils'
+COMMIT_VERSION        : '3.20'
+APP_NAME              : ''
+ISTIO:
+  VERSION             : "asm-1-23"

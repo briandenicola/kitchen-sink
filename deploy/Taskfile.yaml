@@ -1,28 +1,44 @@
 version: '3'
-  
+
+env:
+  TITLE:  Utility Pod for Kubernetes
+
 tasks:
   up:
-    desc: Creates Azure infrastructure and deploys application code
+    desc: Deploys {{.TITLE}} code
     cmds:
     - terraform workspace new {{.APP}} || true
     - terraform workspace select {{.APP}}
     - terraform init
-    - terraform apply -auto-approve -var "application_name={{.APP}}" -compact-warnings
+    - task: apply
+    - task: creds
     - task: deploy
     vars: 
       APP: '{{.CLI_ARGS}}'
 
-  deploy:
-    desc: Deploys Utils pod via Helm
+  apply:
+    desc: Applies Terraform 
+    cmds:
+    - terraform apply -auto-approve -var "application_name={{.APP}}" -compact-warnings
+    vars: 
+      APP: '{{.CLI_ARGS}}'
+
+  creds:
+    desc: Gets AKS Credential File
     cmds:
     - az aks get-credentials -g {{.RG}} -n {{.AKS}} --overwrite-existing
     - sed -i s/devicecode/azurecli/g ~/.kube/config
-    - helm upgrade -i utils --set APP_NAME={{.APP_NAME}} --set ARM_WORKLOAD_APP_ID={{.ARM_WORKLOAD_APP_ID}} --set ARM_TENANT_ID={{.ARM_TENANT_ID}} ./chart
     vars:
       RG: 
         sh: terraform output -raw AKS_RESOURCE_GROUP
       AKS: 
-        sh: terraform output -raw AKS_CLUSTER_NAME
+        sh: terraform output -raw AKS_CLUSTER_NAME    
+
+  deploy:
+    desc: Deploys Utils pod via Helm
+    cmds:
+    - helm upgrade -i utils --set APP_NAME={{.APP_NAME}} --set ARM_WORKLOAD_APP_ID={{.ARM_WORKLOAD_APP_ID}} --set ARM_TENANT_ID={{.ARM_TENANT_ID}} ./chart
+    vars:
       APP_NAME: 
         sh: terraform output -raw APP_NAME
       ARM_WORKLOAD_APP_ID: 
@@ -33,8 +49,8 @@ tasks:
   down:
     desc: Destorys Azure infrastructure and cleans up terraform state files
     cmds:
-    - rm -rf .terraform.lock.hcl .terraform terraform.tfstate terraform.tfstate.backup .terraform.tfstate.lock.info
     - terraform destory -auto-approve
+    - rm -rf .terraform.lock.hcl .terraform terraform.tfstate terraform.tfstate.backup .terraform.tfstate.lock.info
     vars:
       RG: 
         sh: terraform output -raw AKS_RESOURCE_GROUP

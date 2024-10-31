@@ -4,7 +4,7 @@ kind: Namespace
 metadata:
   name: {{ .Values.NAMESPACE }}
   labels:
-    istio-injection: {{ .Values.ISTIO_INJECTED }}
+    istio.io/rev: {{ .Values.ISTIO.VERSION }}
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -51,7 +51,3 @@ spec:
           requests:
             memory: "128Mi"
             cpu: "0.5"
-            #        securityContext:
-            #allowPrivilegeEscalation: false  
-            #runAsUser: 1000       
-            #runAsNonRoot: true
