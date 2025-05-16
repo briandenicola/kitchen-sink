@@ -3,4 +3,4 @@ DOCKER_REPO           : 'bjd145/utils'
 COMMIT_VERSION        : '3.20'
 APP_NAME              : ''
 ISTIO:
-  VERSION             : "asm-1-23"
+  VERSION             : "asm-1-24"
