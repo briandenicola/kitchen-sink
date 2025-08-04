@@ -25,14 +25,28 @@ RUN apt-get update \
     redis-tools \
     vim \
     iproute2 \
-    nmap \
     python3 \
     python3-pip \
     traceroute \
-    netcat \
     ca-certificates  \
     nmon \  
     slurm \
+    #nmap \
+    #netcat \
+    htop \
+    bpftrace \
+    build-essential \
+    libelf-dev \
+    clang \
+    llvm \
+    linux-tools-generic-6.8 \
+    linux-cloud-tools-generic-6.8 \
+    linux-tools-azure-lts-22.04 \
+    linux-cloud-tools-azure-lts-22.04 \
+    linux-tools-azure-6.8 \
+    linux-cloud-tools-azure-6.8 \
+    #linux-tools-$(uname -r) \
+    #linux-cloud-tools-$(uname -r) \
   && apt-get clean
 
 RUN pip install yq
@@ -44,6 +58,7 @@ RUN rm -rf packages-microsoft-prod.deb
 WORKDIR /code
 RUN git clone https://github.com/briandenicola/tooling
 RUN git clone https://github.com/briandenicola/psscripts
+RUN git clone --recurse-submodules https://github.com/libbpf/bpftool.git
 
 RUN bash tooling/istio.sh
 RUN bash tooling/flux2.sh 0.41.2 #4/21/23 - issues with flux2.0rc release
