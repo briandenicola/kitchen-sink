@@ -1,0 +1,22 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+    - task --list 
+    
+  deploy:
+    desc: Deploy Troubleshooting BPF pod
+    cmds:
+    - kubectl apply -f ./pod/bpf-troubleshooting.yaml      
+
+  exec:
+    desc: Exec into Troubleshooting Pod
+    cmds:
+    - kubectl -n kube-system exec -it ebpf-debug-shell -- nsenter --target 1 --mount --uts --ipc --net --pid bash      
+
+  down:
+    desc: Destroys Troubleshooting pod
+    cmds:
+    - kubectl delete -f ./pod/bpf-troubleshooting.yaml      
+

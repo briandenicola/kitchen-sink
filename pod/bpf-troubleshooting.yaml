@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ebpf-debug-shell
+  namespace: kube-system
+spec:
+  containers:
+  - image: bjd145/utils-bpf:1.0
+    imagePullPolicy: IfNotPresent
+    name: nsenter
+    resources: {}
+    securityContext:
+      privileged: true
+  hostIPC: true
+  hostNetwork: true
+  hostPID: true
+  restartPolicy: Never
